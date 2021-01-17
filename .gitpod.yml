@@ -8,5 +8,14 @@ ports:
 
 # List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
 tasks:
-  - init: echo 'curl https://sh.rustup.rs -sSf | sh && 1 && source /workspace/.cargo/env && rustup install nightly && rustup install stable && rustup target add wasm32-unknown-unknown --toolchain nightly' # runs during prebuild
-  - command: echo 'make init && make build'
+  - init: > # runs during prebuild
+    curl https://sh.rustup.rs -sSf | sh &&
+    1 &&
+    source /workspace/.cargo/env &&
+    rustup install nightly &&
+    rustup install stable &&
+    rustup target add wasm32-unknown-unknown --toolchain nightly
+  - command: >
+    echo &&
+    make init &&
+    make build
